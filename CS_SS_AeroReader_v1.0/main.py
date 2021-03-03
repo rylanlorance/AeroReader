@@ -11,11 +11,9 @@ class MyWindow(QMainWindow):
     def __init__(self):
         super(MyWindow, self).__init__()
         self.setWindowTitle("AeroReader!")
-        self.left = 0
-        self.top = 0
         self.width = 500
         self.height = 600
-        self.setGeometry(self.left, self.top, self.width, self.height)
+        self.setFixedSize(self.width, self.height)
 
         self.label = QtWidgets.QLabel(self)
         self.label.move(50, 50)

@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton
-import TabTableWidget as TabTableWidgetFile
+import View.TabTableWidget as TabTableWidgetFile
 
 from PyQt5.QtGui import QIcon
 import sys

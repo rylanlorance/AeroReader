@@ -2,7 +2,7 @@ import sys
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget, QAction, QTabWidget, QVBoxLayout
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import pyqtSlot
-import SupervisedMainView as SupervisedMainViewFile
+import View.SupervisedMainView as SupervisedMainViewFile
 
 
 class MyTableWidget(QWidget):

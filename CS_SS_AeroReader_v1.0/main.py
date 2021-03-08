@@ -1,4 +1,4 @@
-from PyQt5 import QtWidgets
+from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout
 import View.TabTableWidget as TabTableWidgetFile
 
@@ -15,12 +15,17 @@ class MyWindow(QMainWindow):
         self.setFixedSize(self.width, self.height)
 
         self.menuBar = QtWidgets.QMenuBar(self)
+        self.menuBar.setGeometry(QtCore.QRect(0, 0, 500, 21))
+
+        self.menuFile = QtWidgets.QMenu(self.menuBar)
+        self.setMenuBar(self.menuBar)
 
 
         # set up the menu
 
 
         # self.table_widget = TabTableWidgetFile.MyTableWidget(self)
+
         # self.setCentralWidget(self.table_widget)
 
 

@@ -24,3 +24,4 @@ class SupervisedMainView(QWidget):
 
 
 
+

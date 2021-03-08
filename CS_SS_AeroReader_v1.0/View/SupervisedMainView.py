@@ -1,8 +1,12 @@
 from PyQt5.QtWidgets import *
 from PyQt5.QtCore import Qt
+from PyQt5 import QtCore
 from PyQt5.QtGui import *
 
 import sys
+
+from Data.SearchResult import SearchResult
+from View.SupervisedSearchItemRow import SupervisedSearchItemRow
 
 
 class SupervisedMainView(QWidget):
@@ -31,8 +35,21 @@ class SupervisedMainView(QWidget):
         self.fbox.addRow(self.searchButton)
 
         self.formGroupBox.setLayout(self.fbox)
+        self.__loadSearchResults("SearchString")
 
     def __searchButtonClicked(self):
         searchString = self.searchBar.text()
         print("Working with the following : [{0}]".format(searchString))
         searchString.lower()
+
+    def __loadSearchResults(self, searchString):
+        # try this
+        sr1 = SearchResult()
+        sr2 = SearchResult()
+        print("Loading Search Screen")
+
+        self.RowWidget = SupervisedSearchItemRow(QWidget, sr1)
+
+
+
+

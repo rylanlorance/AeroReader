@@ -24,7 +24,7 @@ class MyWindow(QMainWindow):
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following lines.
 
         self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
-        self.supervisedWidget.setGeometry(0, 0, 500, 600)
+        self.supervisedWidget.setGeometry(0, 0, 500, 800)
 
         # set up the menu
 

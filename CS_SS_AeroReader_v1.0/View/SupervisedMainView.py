@@ -10,6 +10,10 @@ class SupervisedMainView(QWidget):
         super(QWidget, self).__init__(parent)
         self.layout = QVBoxLayout(self)
 
+        
+
+
+
 
 
 

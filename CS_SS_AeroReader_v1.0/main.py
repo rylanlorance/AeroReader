@@ -1,7 +1,10 @@
 from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout
+
+
 import View.TabTableWidget as TabTableWidgetFile
 import View.SupervisedMainView as SupervisedViewFile
+import View.FileSystemsWidget as FileSystemsWidgetFile
 
 from PyQt5.QtGui import QIcon
 import sys
@@ -14,16 +17,6 @@ class MyWindow(QMainWindow):
         self.width = 600
         self.height = 700
         self.setGeometry(QtCore.QRect(0, 0, self.height, self.width))
-        # self.setFixedSize(self.width, self.height)
-
-
-        #set up menu bar
-        self.menuBar = QtWidgets.QMenuBar(self)
-        self.menuBar.setGeometry(QtCore.QRect(0, 0, 500, 21))
-        self.menuFile = QtWidgets.QMenu(self.menuBar)
-        self.setMenuBar(self.menuBar)
-
-
 
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following lines.
         # self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
@@ -31,8 +24,12 @@ class MyWindow(QMainWindow):
 
 
         # set up the menu
+        self.f_s = FileSystemsWidgetFile.FileSystemsDialogueWidget(self)
 
-        # self.table_widget = TabTableWidgetFile.MyTableWidget(self)
+        self.setCentralWidget(self.f_s)
+
+
+
 
         # self.setCentralWidget(self.table_widget)
 

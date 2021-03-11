@@ -11,20 +11,22 @@ class MyWindow(QMainWindow):
     def __init__(self):
         super(MyWindow, self).__init__()
         self.setWindowTitle("AeroReader!")
-        self.width = 500
-        self.height = 600
-        self.setFixedSize(self.width, self.height)
+        self.width = 600
+        self.height = 700
+        self.setGeometry(QtCore.QRect(0, 0, self.height, self.width))
+        # self.setFixedSize(self.width, self.height)
 
+
+        #set up menu bar
         self.menuBar = QtWidgets.QMenuBar(self)
         self.menuBar.setGeometry(QtCore.QRect(0, 0, 500, 21))
-
         self.menuFile = QtWidgets.QMenu(self.menuBar)
         self.setMenuBar(self.menuBar)
 
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following lines.
-
         self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
-        self.supervisedWidget.setGeometry(0, 0, 500, 800)
+        self.supervisedWidget.setGeometry(QtCore.QRect(0,0,400, 400))
+
 
         # set up the menu
 

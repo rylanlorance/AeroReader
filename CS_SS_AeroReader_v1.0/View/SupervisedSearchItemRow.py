@@ -10,7 +10,8 @@ class SupervisedSearchItemRow(QWidget):
     def __init__(self, parent, mySearchItem):
         super(QWidget, self).__init__(parent)
         self.rowVBox = QVBoxLayout()
+
+        self.setStyleSheet("background-color: grey")
+
         self.setLayout(self.rowVBox)
 
-        self.setGeometry(QtCore.QRect(0, 0, 10, 21))
-        self.setStyleSheet("background-color: grey")

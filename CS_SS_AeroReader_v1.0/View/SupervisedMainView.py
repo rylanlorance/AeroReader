@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import *
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QRect
 from PyQt5 import QtCore
 from PyQt5.QtGui import *
 
@@ -15,27 +15,25 @@ class SupervisedMainView(QWidget):
         self.mainVBox = QVBoxLayout()
         self.setLayout(self.mainVBox)
 
-        self.formGroupBox = QGroupBox(title="MyGroupBox")
-        self.fbox = QFormLayout()
-        self.fbox.setAlignment(Qt.AlignLeft)
+        self.formBoxGroup = QGroupBox("Search Group")
+
         self.__createFormBox()
-        self.mainVBox.addWidget(self.formGroupBox)
+
+        self.mainVBox.addWidget(self.formBoxGroup)
+
+        self.spacerBtn = QPushButton()
+        self.spacerBtn.setText("SpacerButton")
+        self.mainVBox.addWidget(self.spacerBtn)
+
+        self.searchItemRow = SupervisedSearchItemRow(parent, "mySearchString")
+        self.mainVBox.addWidget(self.searchItemRow)
 
     def __createFormBox(self):
-        self.l1 = QLabel("Search here")
-
-        self.searchBar = QLineEdit()
-        self.l1.setAlignment(Qt.AlignLeft)
-        self.l1.setAlignment(Qt.AlignBottom)
-
-        self.fbox.addRow(self.l1, self.searchBar)
-
-        self.searchButton = QPushButton("Search")
-        self.searchButton.clicked.connect(self.__searchButtonClicked)
-        self.fbox.addRow(self.searchButton)
-
-        self.formGroupBox.setLayout(self.fbox)
-        self.__loadSearchResults("SearchString")
+        self.fboxLayout = QFormLayout()
+        l1 = QLabel("Name")
+        nm = QLineEdit()
+        self.fboxLayout.addRow(l1, nm)
+        self.formBoxGroup.setLayout(self.fboxLayout)
 
     def __searchButtonClicked(self):
         searchString = self.searchBar.text()
@@ -47,9 +45,3 @@ class SupervisedMainView(QWidget):
         sr1 = SearchResult()
         sr2 = SearchResult()
         print("Loading Search Screen")
-
-        self.RowWidget = SupervisedSearchItemRow(QWidget, sr1)
-
-
-
-

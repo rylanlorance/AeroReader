@@ -23,9 +23,11 @@ class MyWindow(QMainWindow):
         self.menuFile = QtWidgets.QMenu(self.menuBar)
         self.setMenuBar(self.menuBar)
 
+
+
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following lines.
-        self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
-        self.supervisedWidget.setGeometry(QtCore.QRect(0, 0, 400, 400))
+        # self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
+        # self.supervisedWidget.setGeometry(QtCore.QRect(0, 0, 400, 400))
 
 
         # set up the menu

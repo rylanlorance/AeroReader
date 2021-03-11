@@ -14,4 +14,8 @@ class SupervisedSearchItemRow(QWidget):
         self.setStyleSheet("background-color: grey")
 
         self.setLayout(self.rowVBox)
+        self.l1 = QLabel()
+        self.l1.setText("Row ! ")
+        self.rowVBox.addWidget(self.l1)
+
 

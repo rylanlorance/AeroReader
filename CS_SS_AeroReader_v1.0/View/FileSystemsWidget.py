@@ -1,5 +1,7 @@
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QFileDialog
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QFileDialog, QBoxLayout, \
+    QHBoxLayout
+
 
 class FileSystemsDialogueWidget(QWidget):
     def __init__(self, parent):
@@ -10,6 +12,9 @@ class FileSystemsDialogueWidget(QWidget):
         self.btn = QPushButton("Q File Open")
         self.btn.clicked.connect(self.__getFiles)
         self.v_layout.addWidget(self.btn)
+
+        self.__createBtn()
+
 
         self.setLayout(self.v_layout)
 
@@ -26,4 +31,14 @@ class FileSystemsDialogueWidget(QWidget):
             with f:
                 data = f.read()
                 print(data)
+
+    def __createBtn(self):
+        self.h_box = QHBoxLayout()
+        self.nextScreenBtn = QPushButton("Next Screen")
+        self.nextScreenBtn.clicked.connect(super.goToNextScreen())
+        self.previousScreenBtn = QPushButton("Previous Screen")
+
+        self.h_box.addWidget(self.nextScreenBtn)
+        self.h_box.addWidget(self.previousScreenBtn)
+        self.v_layout.addLayout(self.h_box)
 

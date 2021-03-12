@@ -19,3 +19,4 @@ class SupervisedSearchItemRow(QWidget):
         self.rowVBox.addWidget(self.l1)
 
 
+

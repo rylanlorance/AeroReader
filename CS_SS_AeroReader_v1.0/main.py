@@ -1,6 +1,6 @@
 from PyQt5 import QtWidgets, QtCore
-from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout
-
+from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QStackedLayout, \
+    QStackedWidget, QDockWidget
 
 import View.TabTableWidget as TabTableWidgetFile
 import View.SupervisedMainView as SupervisedViewFile
@@ -14,24 +14,29 @@ class MyWindow(QMainWindow):
     def __init__(self):
         super(MyWindow, self).__init__()
         self.setWindowTitle("AeroReader!")
-        self.width = 600
+        self.width = 1000
         self.height = 700
         self.setGeometry(QtCore.QRect(0, 0, self.height, self.width))
 
-        # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following lines.
-        # self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
-        # self.supervisedWidget.setGeometry(QtCore.QRect(0, 0, 400, 400))
+        # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following
+        # lines.
+        self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
 
-
-        # set up the menu
         self.f_s = FileSystemsWidgetFile.FileSystemsDialogueWidget(self)
 
-        self.setCentralWidget(self.f_s)
+        self.flow_stack = QStackedWidget()
 
+        self.flow_stack.addWidget(self.f_s)
+        self.flow_stack.addWidget(self.supervisedWidget)
 
+        self.main_VBox = QVBoxLayout()
+        self.main_VBox.addWidget(self.flow_stack)
 
+        self.setCentralWidget(self.flow_stack)
 
-        # self.setCentralWidget(self.table_widget)
+    def goToNextScreen(self):
+        print("Let's go to next screen")
+
 
 
 if __name__ == '__main__':

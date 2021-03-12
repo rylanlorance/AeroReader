@@ -35,7 +35,7 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(self.flow_stack)
 
     def goToNextScreen(self):
-        print("Let's go to next screen")
+        print("Let's go to next screen global")
 
 
 

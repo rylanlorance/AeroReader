@@ -11,10 +11,11 @@ class FileSystemsDialogueWidget(QWidget):
         # click button to open file systems
         self.btn = QPushButton("Q File Open")
         self.btn.clicked.connect(self.__getFiles)
-        self.v_layout.addWidget(self.btn)
+        self.btn.resize(60, 60)
+
+        self.v_layout.addWidget(self.btn, alignment=QtCore.Qt.AlignTop)
 
         self.__createBtn()
-
 
         self.setLayout(self.v_layout)
 
@@ -35,10 +36,16 @@ class FileSystemsDialogueWidget(QWidget):
     def __createBtn(self):
         self.h_box = QHBoxLayout()
         self.nextScreenBtn = QPushButton("Next Screen")
-        self.nextScreenBtn.clicked.connect(super.goToNextScreen())
+        self.nextScreenBtn.clicked.connect(self.__fs_goToNextScreen)
+        # self.nextScreenBtn.clicked.connect(super.goToNextScreen())
         self.previousScreenBtn = QPushButton("Previous Screen")
 
-        self.h_box.addWidget(self.nextScreenBtn)
+        self.h_box.addWidget(self.nextScreenBtn, alignment=QtCore.Qt.AlignBottom)
         self.h_box.addWidget(self.previousScreenBtn)
         self.v_layout.addLayout(self.h_box)
 
+    def __fs_goToNextScreen(self):
+        print("Going to next screen local")
+        print(self)
+        print(self.parent())
+        print(self.parent())

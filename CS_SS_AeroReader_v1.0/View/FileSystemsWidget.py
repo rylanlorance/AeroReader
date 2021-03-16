@@ -43,7 +43,7 @@ class FileSystemsDialogueWidget(QWidget):
 
         self.h_box.addWidget(self.nextScreenBtn, alignment=QtCore.Qt.AlignBottom)
         self.h_box.addWidget(self.previousScreenBtn)
-        self.v_layout.addLayout(self.h_box)
+        # self.v_layout.addLayout(self.h_box)
 
     def __fs_goToNextScreen(self):
         print("Going to next screen local")

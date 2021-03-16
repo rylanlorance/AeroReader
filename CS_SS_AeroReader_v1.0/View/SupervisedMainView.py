@@ -28,6 +28,11 @@ class SupervisedMainView(QWidget):
         self.searchItemRow = SupervisedSearchItemRow(parent, "mySearchString")
         self.mainVBox.addWidget(self.searchItemRow)
 
+        self.btnBox = QHBoxLayout()
+        self.nextBtn = QPushButton("Next Screen")
+        self.nextBtn = QPushButton("Previous Screen")
+
+
     def __createFormBox(self):
         self.fboxLayout = QFormLayout()
         l1 = QLabel("Name")

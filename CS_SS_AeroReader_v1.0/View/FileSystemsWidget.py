@@ -5,7 +5,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVB
 
 class FileSystemsDialogueWidget(QWidget):
     def __init__(self, parent):
-        super(FileSystemsDialogueWidget, self).__init__(parent)
+        super(FileSystemsDialogueWidget, self).__init__()
         self.v_layout = QVBoxLayout()
 
         # click button to open file systems

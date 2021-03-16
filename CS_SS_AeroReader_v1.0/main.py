@@ -26,7 +26,10 @@ class MyWindow(QMainWindow):
 
         self.flow_stack = QStackedWidget()
 
-        self.flow_stack.addWidget(self.f_s)
+        # self.flow_stack.addWidget(self.f_s)
+        self.flow_stack.addWidget(self.supervisedWidget)
+
+        #change later
         self.flow_stack.addWidget(self.supervisedWidget)
 
         self.main_VBox = QVBoxLayout()
@@ -34,8 +37,11 @@ class MyWindow(QMainWindow):
 
         self.setCentralWidget(self.flow_stack)
 
+
     def goToNextScreen(self):
         print("Let's go to next screen global")
+        self.flow_stack.setCurrentIndex(self.flow_stack.currentIndex() + 1)
+
 
 
 

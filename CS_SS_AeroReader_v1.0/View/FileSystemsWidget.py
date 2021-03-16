@@ -6,6 +6,7 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVB
 class FileSystemsDialogueWidget(QWidget):
     def __init__(self, parent):
         super(FileSystemsDialogueWidget, self).__init__()
+        self.parent = parent
         self.v_layout = QVBoxLayout()
 
         # click button to open file systems
@@ -46,6 +47,6 @@ class FileSystemsDialogueWidget(QWidget):
 
     def __fs_goToNextScreen(self):
         print("Going to next screen local")
-        print(self)
-        print(self.parent())
-        print(self.parent())
+        self.parent.goToNextScreen()
+
+

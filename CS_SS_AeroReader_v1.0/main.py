@@ -3,9 +3,11 @@ from PyQt5.QtCore import Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QStackedLayout, \
     QStackedWidget, QDockWidget, QToolBar, QToolButton
 
+# Modules
 import View.TabTableWidget as TabTableWidgetFile
 import View.SupervisedMainView as SupervisedViewFile
 import View.FileSystemsWidget as FileSystemsWidgetFile
+import View.TextViewerMain as TextViewerMainFile
 
 from PyQt5.QtGui import QIcon
 import sys
@@ -23,11 +25,17 @@ class MyWindow(QMainWindow):
         # lines.
         self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
 
+        # file systems page for users to upload files
         self.f_s = FileSystemsWidgetFile.FileSystemsDialogueWidget(self)
+
+        # view txt and pdf files
+        self.txt_view = TextViewerMainFile.TextViewerMain(self)
 
         self.flow_stack = QStackedWidget()
 
-        self.flow_stack.addWidget(self.f_s)
+
+        # self.flow_stack.addWidget(self.f_s)
+        self.flow_stack.addWidget(self.txt_view)
         self.flow_stack.addWidget(self.supervisedWidget)
 
         # self.main_VBox = QVBoxLayout()

@@ -33,8 +33,7 @@ class MyWindow(QMainWindow):
 
         self.flow_stack = QStackedWidget()
 
-
-        # self.flow_stack.addWidget(self.f_s)
+        self.flow_stack.addWidget(self.f_s)
         self.flow_stack.addWidget(self.txt_view)
         self.flow_stack.addWidget(self.supervisedWidget)
 

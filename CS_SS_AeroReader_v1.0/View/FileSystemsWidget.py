@@ -71,11 +71,12 @@ class FileSystemsDialogueWidget(QWidget):
         file_info = os.path.splitext(file.name)
         file_name = file_info[0]
         file_ext = file_info[1]
+        print("File ext-", file_ext)
 
         # create a book object to hold all book information
         self.localBook.fileType = file_ext
 
-        acceptable_filetypes = [".txt", ".pdf"]
+        acceptable_filetypes = [".txt", " .pdf"]
 
         if self.localBook.file_type in acceptable_filetypes:
             print("We have an acceptable filetype")
@@ -86,7 +87,8 @@ class FileSystemsDialogueWidget(QWidget):
             elif self.localBook.file_type == ".pdf":
                 self.localBook.__setPagesList(file.name)
 
-        # else:
+        else:
+            print("We have an unacceptable filetype")
         #     self.wrongFilePopup = QMessageBox()
 
         # add message box

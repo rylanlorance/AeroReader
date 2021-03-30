@@ -1,7 +1,11 @@
+import os
+
 from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QFileDialog, QBoxLayout, \
-    QHBoxLayout, QGroupBox, QFrame
+    QHBoxLayout, QGroupBox, QFrame, QMessageBox
 from PyQt5.uic.properties import QtGui
+
+from Data.Book import Book
 
 
 class FileSystemsDialogueWidget(QWidget):
@@ -50,10 +54,43 @@ class FileSystemsDialogueWidget(QWidget):
         if dlg.exec_():
             filenames = dlg.selectedFiles()
             f = open(filenames[0], 'r')
+            # file_info = os.path.splitext(f.name)
+            # print("1st info", file_info[0])
+            # print("2nd name", file_info[1])
 
             with f:
-                data = f.read()
-                print(data)
+                self.__UploadBook(f)
+                # print("F equals", f)
+                # data = f.read()
+                # print(data)
+
+    def __UploadBook(self, file):
+        print("File = ", file)
+        file_info = os.path.splitext(file.name)
+        file_name = file_info[0]
+        file_ext = file_info[1]
+
+        # create a book object to hold all book information
+        myBook = Book()
+        myBook.file_type = file_ext
+        print("mybook.filetype: ", myBook.file_type)
+
+        acceptable_filetypes = [".txt", ".pdf"]
+
+        if myBook.file_type in acceptable_filetypes:
+            print("We have an acceptable filetype")
+
+            ##
+            if myBook.file_type == ".pdf":
+
+
+        else:
+            self.wrongFilePopup = QMessageBox()
+
+            ## add message box
+
+
+
 
     def __fs_goToNextScreen(self):
         print("Going to next screen local")

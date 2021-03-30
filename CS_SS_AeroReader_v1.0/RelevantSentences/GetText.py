@@ -8,6 +8,7 @@ from nltk.tokenize import word_tokenize
 # Record that keeps page number and index of the word on the page
 word_record = namedtuple('word_record', ('page', 'word_index'))
 
+
 # SynonymDict subclasses dict to create a function that finds and returns all synonym entries
 # of a word (including the word itself)
 class SynonymDict(dict):
@@ -31,8 +32,10 @@ class SynonymDict(dict):
 
         return locations
 
+
 def clean_words(words: str) -> str:
     return word_tokenize(words.lower())
+
 
 def extract_all(file: str, clean_function: Callable[[str], Union[str, List[str]]]) -> List[str]:
     """
@@ -47,6 +50,7 @@ def extract_all(file: str, clean_function: Callable[[str], Union[str, List[str]]
         pages = [clean_function(page.getText()) for page in pdf]
 
     return pages
+
 
 def count_instances(pages: List[str]) -> SynonymDict:
     """

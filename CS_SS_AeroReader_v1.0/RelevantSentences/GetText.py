@@ -37,7 +37,7 @@ def clean_words(words: str) -> str:
     return word_tokenize(words.lower())
 
 
-def extract_all(file: str, clean_function: Callable[[str], Union[str, List[str]]]) -> List[str]:
+def extract_all(file: str, clean_fuexnction: Callable[[str], Union[str, List[str]]]) -> List[str]:
     """
         Extracts text from a PDF, runs cleaning function on each page of text
 

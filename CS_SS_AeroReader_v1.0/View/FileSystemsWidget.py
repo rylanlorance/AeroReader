@@ -3,9 +3,8 @@ import os
 from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QFileDialog, QBoxLayout, \
     QHBoxLayout, QGroupBox, QFrame, QMessageBox
-from PyQt5.uic.properties import QtGui
 
-from Data.Book import Book
+from PyQt5.uic.properties import QtGui
 
 
 class FileSystemsDialogueWidget(QWidget):
@@ -13,6 +12,8 @@ class FileSystemsDialogueWidget(QWidget):
         super(FileSystemsDialogueWidget, self).__init__()
         self.parent = parent
         self.v_layout = QVBoxLayout()
+
+        self.localBook = self.parent.myBook
 
         self.addDocumentsBox = QGroupBox("Add Documents")
         self.addDocumentsBox.setFixedSize(400, 500)
@@ -26,6 +27,7 @@ class FileSystemsDialogueWidget(QWidget):
         # self.v_layout.addWidget(self.btn, alignment=QtCore.Qt.AlignTop)
 
         self.setLayout(self.v_layout)
+
 
     def buildDocumentsBoxUI(self):
         print("Building Docs Box")
@@ -71,26 +73,23 @@ class FileSystemsDialogueWidget(QWidget):
         file_ext = file_info[1]
 
         # create a book object to hold all book information
-        myBook = Book()
-        myBook.file_type = file_ext
-        print("mybook.filetype: ", myBook.file_type)
+        self.localBook.fileType = file_ext
 
         acceptable_filetypes = [".txt", ".pdf"]
 
-        if myBook.file_type in acceptable_filetypes:
+        if self.localBook.file_type in acceptable_filetypes:
             print("We have an acceptable filetype")
 
-            ##
-            if myBook.file_type == ".pdf":
+            if self.localBook.file_type == ".txt":
+               self.localBook.contents = file.read()
 
+            elif self.localBook.file_type == ".pdf":
+                self.localBook.__setPagesList(file.name)
 
-        else:
-            self.wrongFilePopup = QMessageBox()
+        # else:
+        #     self.wrongFilePopup = QMessageBox()
 
-            ## add message box
-
-
-
+        # add message box
 
     def __fs_goToNextScreen(self):
         print("Going to next screen local")

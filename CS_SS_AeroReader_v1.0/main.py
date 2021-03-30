@@ -12,6 +12,8 @@ import View.TextViewerMain as TextViewerMainFile
 from PyQt5.QtGui import QIcon
 import sys
 
+from Data.Book import Book
+
 
 class MyWindow(QMainWindow):
     def __init__(self):
@@ -20,6 +22,10 @@ class MyWindow(QMainWindow):
         self.width = 1000
         self.height = 700
         self.setGeometry(QtCore.QRect(0, 0, self.height, self.width))
+
+
+        ## Book
+        self.myBook = Book()
 
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following
         # lines.
@@ -44,8 +50,6 @@ class MyWindow(QMainWindow):
 
         self.createToolBar()
 
-
-
     def createToolBar(self):
         self.tb = QToolBar()
 
@@ -54,17 +58,14 @@ class MyWindow(QMainWindow):
         self.tb_back_btn.clicked.connect(self.goToPreviousScreen)
         self.tb.addWidget(self.tb_back_btn)
 
-
         self.tb_next_btn = QToolButton()
         self.tb_next_btn.setText("Next")
         self.tb_next_btn.clicked.connect(self.goToNextScreen)
         self.tb.addWidget(self.tb_next_btn)
 
-
         self.addToolBar(Qt.BottomToolBarArea, self.tb)
 
         # self.main_VBox.addWidget(self.tb)
-
 
     def goToPreviousScreen(self):
         print("Let's go to the previous screen global")
@@ -73,8 +74,6 @@ class MyWindow(QMainWindow):
     def goToNextScreen(self):
         print("Let's go to next screen global")
         self.flow_stack.setCurrentIndex(self.flow_stack.currentIndex() + 1)
-
-
 
 
 if __name__ == '__main__':

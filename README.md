@@ -1,4 +1,4 @@
-#AeroReader
+# AeroReader
 ### Setup install environment
 Setting up AeroReader is simple!
 If you do not have Conda, first install [MiniConda](https://docs.conda.io/en/latest/miniconda.html).

@@ -1,6 +1,6 @@
 #AeroReader
 ### Setup install environment
-Setting up AeroReader is simple because we have included a requirements.txt file.
+Setting up AeroReader is simple!
 If you do not have Conda, first install [MiniConda](https://docs.conda.io/en/latest/miniconda.html).
 ```bash
 cd AeroReader # This should be your install location

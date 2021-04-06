@@ -74,33 +74,17 @@ class FileSystemsDialogueWidget(QWidget):
         print("File ext-", file_ext)
 
         # create a book object to hold all book information
-        self.localBook.fileType = str(file_ext)
-        print("local book file ext->", self.localBook.fileType)
+        self.localBook.file_type = str(file_ext)
 
         acceptable_filetypes = [".txt", " .pdf", " .txt", " .pdf"]
 
-        if self.localBook.fileType == ".txt" or self.localBook.fileType == ".pdf":
+        if self.localBook.file_type == ".txt" or self.localBook.file_type == ".pdf":
             print("We have an acceptable file type")
-            self.localBook.__setPages()
-            self.localBook.__setPages(file)
+            self.localBook.setPages(file)
 
         else:
             print("We have an unacceptable file type")
 
-        # if self.localBook.file_type in acceptable_filetypes:
-        #    print("We have an acceptable filetype")
-
-        #    if self.localBook.file_type == ".txt":
-        #       self.localBook.contents = file.read()
-
-        #    elif self.localBook.file_type == ".pdf":
-        #        self.localBook.__setPagesList(file.name)
-
-        # else:
-        #    print("We have an unacceptable filetype")
-        #     self.wrongFilePopup = QMessageBox()
-
-        # add message box
 
     def __fs_goToNextScreen(self):
         print("Going to next screen local")

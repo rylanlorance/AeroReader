@@ -186,6 +186,6 @@ class Tree(QMainWindow):
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    mainWin = Tree('frankenstein.pdf', 3, 900, 900)
+    mainWin = Tree('../Meta/frankenstein.pdf', 3, 900, 900)
     mainWin.show()
     sys.exit(app.exec_())

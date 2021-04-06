@@ -50,6 +50,10 @@ class MyWindow(QMainWindow):
 
         self.createToolBar()
 
+    def setBook(self):
+        print("Saving book....")
+
+
     def createToolBar(self):
         self.tb = QToolBar()
 

@@ -85,6 +85,10 @@ class FileSystemsDialogueWidget(QWidget):
         else:
             print("We have an unacceptable file type")
 
+        self.save()
+
+    def save(self):
+        self.parent.setBook(self.localBook)
 
     def __fs_goToNextScreen(self):
         print("Going to next screen local")

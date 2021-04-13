@@ -21,7 +21,6 @@ class Book:
             self.index = GetTextFile.count_instances(self.pages_list)
             print("index->", self.index)
 
-
         elif self.file_type == ".pdf":
             print("We are working with a .pdf file")
 

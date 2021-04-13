@@ -16,10 +16,12 @@ class Book:
             print("We are working with a .txt file")
             self.pages_list = [file.read()]
 
-            self.contents = file.read()
+            self.contents = self.pages_list[0]
 
             self.index = GetTextFile.count_instances(self.pages_list)
+            print("pages", self.pages_list)
             print("index->", self.index)
+            print("Contents->", self.contents)
 
         elif self.file_type == ".pdf":
             print("We are working with a .pdf file")

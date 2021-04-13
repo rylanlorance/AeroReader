@@ -87,6 +87,7 @@ class FileSystemsDialogueWidget(QWidget):
 
         self.save()
 
+
     def save(self):
         self.parent.setBook(self.localBook)
 

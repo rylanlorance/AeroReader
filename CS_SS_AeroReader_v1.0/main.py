@@ -24,6 +24,7 @@ class MyWindow(QMainWindow):
         self.setGeometry(QtCore.QRect(0, 0, self.height, self.width))
 
 
+
         ## Book
         self.myBook = Book()
 
@@ -38,22 +39,34 @@ class MyWindow(QMainWindow):
         self.txt_view = TextViewerMainFile.TextViewerMain(self)
 
         self.flow_stack = QStackedWidget()
+        self.flow_stack.currentChanged.connect(self.onChanged)
 
         self.flow_stack.addWidget(self.f_s)
         self.flow_stack.addWidget(self.txt_view)
-        self.flow_stack.addWidget(self.supervisedWidget)
+        # self.flow_stack.addWidget(self.supervisedWidget)
 
         # self.main_VBox = QVBoxLayout()
         # self.main_VBox.addWidget(self.flow_stack)
 
         self.setCentralWidget(self.flow_stack)
 
+        self.unsupervisedWindow = QMainWindow()
+        self.initSupervisedWindow()
+
+        ## change later
+        self.showSupervisedWidget()
+
         self.createToolBar()
+
+    def onChanged(self):
+        self.txt_view.setTextEditorSettings()
 
     def setBook(self, inputBook):
         print("Saving book....")
         self.myBook = inputBook
 
+    def getBook(self):
+        return self.myBook
 
     def createToolBar(self):
         self.tb = QToolBar()
@@ -79,6 +92,12 @@ class MyWindow(QMainWindow):
     def goToNextScreen(self):
         print("Let's go to next screen global")
         self.flow_stack.setCurrentIndex(self.flow_stack.currentIndex() + 1)
+
+    def initSupervisedWindow(self):
+        self.unsupervisedWindow.setCentralWidget(self.supervisedWidget)
+
+    def showSupervisedWidget(self):
+        self.unsupervisedWindow.show()
 
 
 if __name__ == '__main__':

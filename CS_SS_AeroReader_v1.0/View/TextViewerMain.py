@@ -10,17 +10,21 @@ class TextViewerMain(QWidget):
         self.mainVBox = QVBoxLayout()
         self.setLayout(self.mainVBox)
         self.parent = parent
-
-        self.localBook = self.parent.myBook
+        self.localBook = self.parent.getBook()
 
         self.l1 = QLabel("Hello Text Viewer")
         self.mainVBox.addWidget(self.l1)
+
         self.openUnsupervisedWidgetBtn = QPushButton("Open Unsupervised")
         self.mainVBox.addWidget(self.openUnsupervisedWidgetBtn)
 
+        self.openSupervisedWidgetBtn = QPushButton("Open Supervised")
+        self.openSupervisedWidgetBtn.clicked.connect(parent.showSupervisedWidget)
+        self.mainVBox.addWidget(self.openSupervisedWidgetBtn)
+
         self.text_box = QPlainTextEdit()
         self.text_box.setWordWrapMode(QTextOption.NoWrap)
-        self.__setTextEditorSettings()
+        self.setTextEditorSettings()
 
         self.mainVBox.addWidget(self.text_box)
 
@@ -29,9 +33,19 @@ class TextViewerMain(QWidget):
         # linecursor = QTextCursor(self.text_box.document().findBlockByLineNumber(250 - 1))
         # self.text_box.setTextCursor(linecursor)
 
-    def __setTextEditorSettings(self):
+    def setTextEditorSettings(self):
+        self.localBook = self.parent.getBook()
+
+        print("Current Book: ", self.localBook.contents)
+
         self.text_box.setReadOnly(True)
         font = QFont('Times', 24)
         self.text_box.setFont(font)
-        f = open("Meta/Metamorphasis_Kafka.txt")
-        self.text_box.insertPlainText(f.read())
+        self.text_box.clear()
+        print("")
+
+        if self.localBook.contents is None:
+            self.text_box.insertPlainText("No Book Uploaded yet")
+
+        else:
+            self.text_box.insertPlainText(self.localBook.contents)

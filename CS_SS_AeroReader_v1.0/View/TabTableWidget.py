@@ -9,6 +9,8 @@ class MyTableWidget(QWidget):
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
         self.layout = QVBoxLayout(self)
+        self.parent = parent
+
 
 
         # Init tabs

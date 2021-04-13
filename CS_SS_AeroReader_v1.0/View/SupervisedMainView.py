@@ -14,6 +14,9 @@ class SupervisedMainView(QWidget):
         super(QWidget, self).__init__(parent)
         self.mainVBox = QVBoxLayout()
         self.setLayout(self.mainVBox)
+        self.parent = parent
+
+        self.localBook = self.parent.getBook()
 
         self.formBoxGroup = QGroupBox("Search Group")
 
@@ -21,32 +24,36 @@ class SupervisedMainView(QWidget):
 
         self.mainVBox.addWidget(self.formBoxGroup)
 
-        self.spacerBtn = QPushButton()
-        self.spacerBtn.setText("SpacerButton")
-        self.mainVBox.addWidget(self.spacerBtn)
-
         self.searchItemRow = SupervisedSearchItemRow(parent, "mySearchString")
         self.mainVBox.addWidget(self.searchItemRow)
 
-        self.btnBox = QHBoxLayout()
-        self.nextBtn = QPushButton("Next Screen")
-        self.nextBtn = QPushButton("Previous Screen")
+        self.searchListArea = QScrollArea()
+        self.createSearchListArea()
+
+    def init(self):
+        self.localBook = self.parent.getBook()
+
+    def createSearchListArea(self):
+        self.searchListArea.setWidgetResizable(True)
+        self.groupBox = QGroupBox()
+
 
 
     def __createFormBox(self):
         self.fboxLayout = QFormLayout()
-        l1 = QLabel("Name")
-        nm = QLineEdit()
-        self.fboxLayout.addRow(l1, nm)
+        self.l1 = QLabel("Name")
+        self.nm = QLineEdit()
+        self.fboxLayout.addRow(self.l1, self.nm)
+        btn = QPushButton("Search")
+        btn.clicked.connect(self.__searchButtonClicked)
+        self.fboxLayout.addRow(btn)
         self.formBoxGroup.setLayout(self.fboxLayout)
 
     def __searchButtonClicked(self):
-        searchString = self.searchBar.text()
+        searchString = self.nm.text()
         print("Working with the following : [{0}]".format(searchString))
-        searchString.lower()
+        self.localBook.searchForWords(searchString)
 
-    def __loadSearchResults(self, searchString):
-        # try this
-        sr1 = SearchResult()
-        sr2 = SearchResult()
-        print("Loading Search Screen")
+
+
+

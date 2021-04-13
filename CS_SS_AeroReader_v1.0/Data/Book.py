@@ -9,6 +9,10 @@ class Book:
         self.pages_list = None
         self.index = None
 
+    def searchForWords(self, searchQuery):
+        print("Searching for...", searchQuery)
+
+
     def setPages(self, file):
         print("Path", file)
 

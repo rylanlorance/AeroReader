@@ -52,7 +52,13 @@ class SupervisedMainView(QWidget):
     def __searchButtonClicked(self):
         searchString = self.nm.text()
         print("Working with the following : [{0}]".format(searchString))
-        self.localBook.searchForWords(searchString)
+
+        if self.localBook == None:
+            print("Warning... error")
+        else:
+            index = self.localBook.searchForWords(searchString)
+            print('index->', index)
+
 
 
 

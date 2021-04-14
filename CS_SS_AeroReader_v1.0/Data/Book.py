@@ -11,6 +11,13 @@ class Book:
 
     def searchForWords(self, searchQuery):
         print("Searching for...", searchQuery)
+        for i in self.index:
+            print("item in index->", i)
+
+
+        print("Searching for... found->", self.index)
+        return self.index.synonym_find(searchQuery)
+
 
 
     def setPages(self, file):

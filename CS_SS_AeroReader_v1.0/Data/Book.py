@@ -1,4 +1,8 @@
+from PyDictionary import PyDictionary
+
 import RelevantSentences.GetText as GetTextFile
+
+from nltk.tokenize import word_tokenize
 
 
 class Book:
@@ -24,9 +28,10 @@ class Book:
         if self.file_type == ".txt":
             print("We are working with a .txt file")
             # self.contents = file.read()
-            text = file.read()
-            print("Text: ", text)
+            self.contents = file.read()
+            print("self.contents ", self.contents)
 
+            self.create_index_txt(file)
 
             # for line in self.lines:
             #     print("line: ", line)
@@ -40,3 +45,24 @@ class Book:
 
         else:
             print("Filetype Error")
+
+    def create_index_txt(self, file):
+        print("creating index")
+
+        dictionary = PyDictionary()
+
+        print('contents: ', self.contents)
+
+        contentsCleaned = word_tokenize(self.contents.lower())
+
+        print("cleaned", contentsCleaned)
+
+
+
+
+
+
+
+
+
+

@@ -1,8 +1,15 @@
 from PyDictionary import PyDictionary
 
 import RelevantSentences.GetText as GetTextFile
+import Data.SearchResult as SearchResultFile
 
 from nltk.tokenize import word_tokenize
+
+
+class Index(dict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.index = PyDictionary()
 
 
 class Book:
@@ -31,34 +38,37 @@ class Book:
             self.contents = file.read()
             print("self.contents ", self.contents)
 
-            self.create_index_txt(file)
+            self.index = self.create_index_txt()
 
-            # for line in self.lines:
-            #     print("line: ", line)
-            #     list = line.strip()
-            #     print(list)
-
-            # self.index = GetTextFile.count_instances(self.pages_list)
-            print("pages", self.pages_list)
             print("index->", self.index)
             print("Contents->", self.contents)
 
         else:
             print("Filetype Error")
 
-    def create_index_txt(self, file):
+    def create_index_txt(self):
         print("creating index")
 
-        dictionary = PyDictionary()
+        index = Index()
 
         print('contents: ', self.contents)
 
         contentsCleaned = word_tokenize(self.contents.lower())
 
-        print("cleaned", contentsCleaned)
+        for i, word in enumerate(contentsCleaned):
+            if not word.isalpha():
+                continue
 
+            if word not in index:
+                index[word] = list()
 
+            newRes = SearchResultFile.SearchResult()
+            newRes.word = word
+            newRes.position = i
 
+            index[word].append(newRes)
+
+        return index
 
 
 

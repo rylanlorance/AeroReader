@@ -11,6 +11,7 @@ word_record = namedtuple('word_record', ('page', 'word_index'))
 
 # SynonymDict subclasses dict to create a function that finds and returns all synonym entries
 # of a word (including the word itself)
+
 class SynonymDict(dict):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

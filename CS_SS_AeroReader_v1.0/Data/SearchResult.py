@@ -1,3 +1,5 @@
 class SearchResult:
     def __init__(self):
-        self.lines = None
+        self.word = None
+        self.position = None
+

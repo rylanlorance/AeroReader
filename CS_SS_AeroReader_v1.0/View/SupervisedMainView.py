@@ -24,8 +24,8 @@ class SupervisedMainView(QWidget):
 
         self.mainVBox.addWidget(self.formBoxGroup)
 
-        self.searchItemRow = SupervisedSearchItemRow(parent, "mySearchString")
-        self.mainVBox.addWidget(self.searchItemRow)
+        # self.searchItemRow = SupervisedSearchItemRow(parent, "mySearchString")
+        # self.mainVBox.addWidget(self.searchItemRow)
 
         self.searchListArea = QScrollArea()
         self.createSearchListArea()

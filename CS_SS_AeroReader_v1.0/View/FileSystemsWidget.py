@@ -80,7 +80,7 @@ class FileSystemsDialogueWidget(QWidget):
 
         if self.localBook.file_type == ".txt" or self.localBook.file_type == ".pdf":
             print("We have an acceptable file type")
-            self.localBook.setPages(file)
+            self.localBook.setBook(file)
 
         else:
             print("We have an unacceptable file type")

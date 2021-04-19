@@ -51,7 +51,6 @@ def extract_all(file: str, clean_fuexnction: Callable[[str], Union[str, List[str
 
     return pages
 
-
 def count_instances(pages: List[str]) -> SynonymDict:
     """
     :param pages: A list where each index i corresponds to page i's contents

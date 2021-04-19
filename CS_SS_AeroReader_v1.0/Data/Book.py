@@ -23,11 +23,13 @@ class Book:
 
     def searchForWords(self, searchQuery):
         print("Searching for...", searchQuery)
-        for i in self.index:
-            print("item in index->", i)
+        searchQueryFormatted = searchQuery.lower()
 
-        print("Searching for... found->", self.index)
-        return self.index.synonym_find(searchQuery)
+        return self.index[searchQueryFormatted]
+
+
+
+
 
     def setBook(self, file):
         print("Path", file)
@@ -40,8 +42,8 @@ class Book:
 
             self.index = self.create_index_txt()
 
-            print("index->", self.index)
-            print("Contents->", self.contents)
+            # print("index->", self.index)
+            # print("Contents->", self.contents)
 
         else:
             print("Filetype Error")

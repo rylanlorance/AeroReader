@@ -5,7 +5,7 @@ from PyQt5.QtGui import *
 
 import sys
 
-from Data.SearchResult import SearchResult
+from Data.SearchResultItem import SearchResultItem
 from View.SupervisedSearchItemRow import SupervisedSearchItemRow
 
 
@@ -15,12 +15,15 @@ class SupervisedMainView(QWidget):
         self.mainVBox = QVBoxLayout()
         self.setLayout(self.mainVBox)
         self.parent = parent
+        self.showResponseUI = True
 
         self.localBook = self.parent.getBook()
+        self.queryResult = None
+
 
         self.formBoxGroup = QGroupBox("Search Group")
 
-        self.__createFormBox()
+        self.__createSeachBox()
 
         self.mainVBox.addWidget(self.formBoxGroup)
 
@@ -28,18 +31,32 @@ class SupervisedMainView(QWidget):
         # self.mainVBox.addWidget(self.searchItemRow)
 
         self.searchListArea = QScrollArea()
-        self.createSearchListArea()
+
+        self.queryLayout = QVBoxLayout()
+        self.queryWidget = QWidget()
+
+        self.queryFormBox = QGroupBox("Results for [Search Result]")
+        self.querySynFormBox = QGroupBox("Results for words similar to [Search Result]")
+
+        self.createSearchResponseArea()
 
     def init(self):
         self.localBook = self.parent.getBook()
 
-    def createSearchListArea(self):
-        self.searchListArea.setWidgetResizable(True)
-        self.groupBox = QGroupBox()
+    def createSearchResponseArea(self):
+        if self.showResponseUI and self.queryResult:
+            self.queryWidget.setLayout(self.queryLayout)
+            self.queryWidget.setStyleSheet("background-color: rgb(205, 237, 190)")
 
+            self.queryLayout.addWidget(self.queryFormBox)
+            self.queryLayout.addWidget(self.querySynFormBox)
 
+            self.mainVBox.addWidget(self.queryWidget)
 
-    def __createFormBox(self):
+        else:
+            print("Search Error")
+
+    def __createSeachBox(self):
         self.fboxLayout = QFormLayout()
         self.l1 = QLabel("Name")
         self.nm = QLineEdit()
@@ -53,13 +70,9 @@ class SupervisedMainView(QWidget):
         searchString = self.nm.text()
         print("Working with the following : [{0}]".format(searchString))
 
-        if self.localBook == None:
+        if self.localBook.index is None:
             print("Warning... error")
+
         else:
-            index = self.localBook.searchForWords(searchString)
-            print('index->', index)
-
-
-
-
-
+            self.queryResult = self.localBook.searchForWords(searchString)
+            self.init()

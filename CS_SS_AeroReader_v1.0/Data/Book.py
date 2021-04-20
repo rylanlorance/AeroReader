@@ -1,7 +1,9 @@
 from PyDictionary import PyDictionary
 
 import RelevantSentences.GetText as GetTextFile
-import Data.SearchResult as SearchResultFile
+import Data.QueryResult as QueryResultFile
+
+import Data.SearchResultItem as SearchResultFile
 
 from nltk.tokenize import word_tokenize
 
@@ -25,10 +27,11 @@ class Book:
         print("Searching for...", searchQuery)
         searchQueryFormatted = searchQuery.lower()
 
-        return self.index[searchQueryFormatted]
+        ## tim's work goes here
+        res = QueryResultFile.QueryResult()
+        res.queryLocations = self.index[searchQueryFormatted]
 
-
-
+        return res
 
 
     def setBook(self, file):
@@ -64,7 +67,7 @@ class Book:
             if word not in index:
                 index[word] = list()
 
-            newRes = SearchResultFile.SearchResult()
+            newRes = SearchResultFile.SearchResultItem()
             newRes.word = word
             newRes.position = i
 

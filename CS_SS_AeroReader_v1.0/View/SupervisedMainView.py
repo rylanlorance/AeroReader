@@ -45,14 +45,19 @@ class SupervisedMainView(QWidget):
         self.createSearchResponseArea()
 
     def createSearchResponseArea(self):
+        print("Query Result->", self.queryResult)
+
         if self.showResponseUI and self.queryResult:
             self.queryWidget.setLayout(self.queryLayout)
             self.queryWidget.setStyleSheet("background-color: rgb(205, 237, 190)")
 
             self.queryFormBox.setTitle("Results for {}".format(self.queryResult.query))
 
+            self.querySynFormBox.setTitle("Results for Synonyms of {}".format(self.queryResult.query))
+
             self.queryLayout.addWidget(self.queryFormBox)
             self.queryLayout.addWidget(self.querySynFormBox)
+
 
             self.mainVBox.addWidget(self.queryWidget)
 
@@ -71,7 +76,6 @@ class SupervisedMainView(QWidget):
 
     def __searchButtonClicked(self):
         searchString = self.nm.text()
-        print("Working with the following : [{0}]".format(searchString))
 
         if self.localBook.index is None:
             print("Warning... error")

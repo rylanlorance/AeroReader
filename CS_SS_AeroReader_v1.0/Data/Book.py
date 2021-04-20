@@ -28,9 +28,10 @@ class Book:
         searchQueryFormatted = searchQuery.lower()
 
         res = QueryResultFile.QueryResult()
-        res.query = searchQuery
+        res.query = searchQueryFormatted
 
         if searchQuery in self.index:
+            print("we got a hit", self.index[searchQueryFormatted])
             res.queryLocations = self.index[searchQueryFormatted]
 
         else:

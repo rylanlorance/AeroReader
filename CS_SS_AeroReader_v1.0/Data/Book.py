@@ -27,9 +27,14 @@ class Book:
         print("Searching for...", searchQuery)
         searchQueryFormatted = searchQuery.lower()
 
-        ## tim's work goes here
         res = QueryResultFile.QueryResult()
-        res.queryLocations = self.index[searchQueryFormatted]
+        res.query = searchQuery
+
+        if searchQuery in self.index:
+            res.queryLocations = self.index[searchQueryFormatted]
+
+        else:
+            res = None
 
         return res
 

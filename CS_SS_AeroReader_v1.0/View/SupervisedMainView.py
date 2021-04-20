@@ -42,11 +42,14 @@ class SupervisedMainView(QWidget):
 
     def init(self):
         self.localBook = self.parent.getBook()
+        self.createSearchResponseArea()
 
     def createSearchResponseArea(self):
         if self.showResponseUI and self.queryResult:
             self.queryWidget.setLayout(self.queryLayout)
             self.queryWidget.setStyleSheet("background-color: rgb(205, 237, 190)")
+
+            self.queryFormBox.setTitle("Results for {}".format(self.queryResult.query))
 
             self.queryLayout.addWidget(self.queryFormBox)
             self.queryLayout.addWidget(self.querySynFormBox)

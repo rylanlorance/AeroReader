@@ -34,9 +34,6 @@ class Book:
             print("we got a hit", self.index[searchQueryFormatted])
             res.queryLocations = self.index[searchQueryFormatted]
 
-        else:
-            res = None
-
         return res
 
 

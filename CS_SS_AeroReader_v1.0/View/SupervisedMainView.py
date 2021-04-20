@@ -7,6 +7,7 @@ import sys
 
 from Data.SearchResultItem import SearchResultItem
 from View.SupervisedSearchItemRow import SupervisedSearchItemRow
+from Data.QueryResult import QueryResult
 
 
 class SupervisedMainView(QWidget):
@@ -17,9 +18,10 @@ class SupervisedMainView(QWidget):
         self.parent = parent
         self.showResponseUI = True
 
-        self.localBook = self.parent.getBook()
-        self.queryResult = None
+        self.queryResult = QueryResult()
+        self.queryResult.query = ""
 
+        self.localBook = self.parent.getBook()
 
         self.formBoxGroup = QGroupBox("Search Group")
 
@@ -45,9 +47,9 @@ class SupervisedMainView(QWidget):
         self.createSearchResponseArea()
 
     def createSearchResponseArea(self):
-        print("Query Result->", self.queryResult)
+        print("Query Result->", self.queryResult.query)
 
-        if self.showResponseUI and self.queryResult:
+        if self.showResponseUI and self.queryResult.query != "":
             self.queryWidget.setLayout(self.queryLayout)
             self.queryWidget.setStyleSheet("background-color: rgb(205, 237, 190)")
 
@@ -57,7 +59,6 @@ class SupervisedMainView(QWidget):
 
             self.queryLayout.addWidget(self.queryFormBox)
             self.queryLayout.addWidget(self.querySynFormBox)
-
 
             self.mainVBox.addWidget(self.queryWidget)
 

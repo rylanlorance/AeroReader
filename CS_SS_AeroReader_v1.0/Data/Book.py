@@ -64,14 +64,8 @@ class Book:
 
         index = Index()
 
-
-        # contentsCleaned = word_tokenize(self.contents.lower())
-
-        contents = ""
-
         with open(self.file.name) as file:
             for i, line in enumerate(file):
-                self.contents += line
                 for j, word in enumerate(word_tokenize(line.lower())):
                     if not word.isalpha():
                         continue

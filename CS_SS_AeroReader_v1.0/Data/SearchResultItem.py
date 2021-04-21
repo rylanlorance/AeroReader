@@ -1,5 +1,6 @@
 class SearchResultItem:
     def __init__(self):
         self.word = None
-        self.position = None
+        self.line_pos = None
+        self.word_pos = None
 

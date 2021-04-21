@@ -18,6 +18,7 @@ class Book:
     def __init__(self):
         self.title = None
         self.file_type = None
+        self.file = None
         self.contents = None
         self.pages_list = None
         self.lines = None
@@ -43,7 +44,7 @@ class Book:
         if self.file_type == ".txt":
             print("We are working with a .txt file")
             # self.contents = file.read()
-            self.contents = file.read()
+            self.file = file
             print("self.contents ", self.contents)
 
             self.index = self.create_index_txt()
@@ -61,20 +62,26 @@ class Book:
 
         print('contents: ', self.contents)
 
-        contentsCleaned = word_tokenize(self.contents.lower())
+        # contentsCleaned = word_tokenize(self.contents.lower())
 
-        for i, word in enumerate(contentsCleaned):
-            if not word.isalpha():
-                continue
+        with open(self.file.name) as file:
+            for line in file:
+                for word in word_tokenize(line.lower()):
+                    if word.isalpha():
+                        print("Word-> ", word)
 
-            if word not in index:
-                index[word] = list()
-
-            newRes = SearchResultFile.SearchResultItem()
-            newRes.word = word
-            newRes.position = i
-
-            index[word].append(newRes)
+        # for i, word in enumerate(contentsCleaned):
+        #     if not word.isalpha():
+        #         continue
+        #
+        #     if word not in index:
+        #         index[word] = list()
+        #
+        #     newRes = SearchResultFile.SearchResultItem()
+        #     newRes.word = word
+        #     newRes.position = i
+        #
+        #     index[word].append(newRes)
 
         return index
 

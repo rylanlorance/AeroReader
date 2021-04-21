@@ -54,8 +54,10 @@ class SupervisedMainView(QWidget):
             self.queryWidget.setStyleSheet("background-color: rgb(205, 237, 190)")
 
             self.queryFormBox.setTitle("Results for {}".format(self.queryResult.query))
+            self.createQueryResultBox()
 
             self.querySynFormBox.setTitle("Results for Synonyms of {}".format(self.queryResult.query))
+            self.createSynResultBox()
 
             self.queryLayout.addWidget(self.queryFormBox)
             self.queryLayout.addWidget(self.querySynFormBox)
@@ -64,6 +66,23 @@ class SupervisedMainView(QWidget):
 
         else:
             print("Search Error")
+
+    def createSynResultBox(self):
+        self.synFormBoxLayout = QVBoxLayout()
+
+    def createQueryResultBox(self):
+        self.queryFormBoxLayout = QVBoxLayout()
+        self.queryFormBox.setLayout(self.queryFormBoxLayout)
+
+        resultRow = SupervisedSearchItemRow(self)
+        self.queryFormBoxLayout.addWidget(resultRow)
+
+        for loc in self.queryResult.queryLocations:
+            print("Query location obj = ", loc)
+            print("Query location obj info = ", loc.word)
+            print("Query location obj pos = ", loc.position)
+            print("Word grab in txt ", self.localBook.contents[loc.position])
+
 
     def __createSeachBox(self):
         self.fboxLayout = QFormLayout()
@@ -83,4 +102,8 @@ class SupervisedMainView(QWidget):
 
         else:
             self.queryResult = self.localBook.searchForWords(searchString)
+
+
+
+
             self.init()

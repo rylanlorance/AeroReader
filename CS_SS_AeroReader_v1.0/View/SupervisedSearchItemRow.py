@@ -10,19 +10,11 @@ import sys
 class SupervisedSearchItemRow(QWidget):
     def __init__(self, parent):
         super(QWidget, self).__init__(parent)
-        self.rowVBox = QVBoxLayout()
+        self.rowHBox = QHBoxLayout()
         self.parent = parent
 
-        self.setStyleSheet("background-color: grey")
-
-        self.setLayout(self.rowVBox)
-        self.rowVBox.addStretch()
-
-        self.l1 = QLabel()
-
-
-
-        self.rowVBox.addWidget(self.l1)
+        self.label = QLabel("Rylan Lorance")
+        self.rowHBox.addWidget(self.label)
 
 
 

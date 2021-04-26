@@ -53,5 +53,6 @@ class TextViewerMain(QWidget):
 
     def moveLine(self, line_pos):
         print("Moved cursor to", line_pos)
-        # self.text_box.moveCursor(self.lineCursor, self.text_box.document().findBlockByLineNumber(line_pos))
+        self.lineCursor = QTextCursor(self.text_box.document().findBlockByLineNumber(line_pos))
+        self.text_box.setTextCursor(self.lineCursor)
 

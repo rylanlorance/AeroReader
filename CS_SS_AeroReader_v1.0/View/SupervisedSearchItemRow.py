@@ -20,6 +20,7 @@ class SupervisedSearchItemRow(QWidget):
         self.label = QLabel(SearchResItem.word)
         self.label.setFont(QFont('Arial', 15))
         self.rowVBox.addWidget(self.label)
+        print("_______ found on line ", SearchResItem.line_pos)
 
         self.line = QLabel(lineContext)
         self.rowVBox.addWidget(self.line)
@@ -33,9 +34,7 @@ class SupervisedSearchItemRow(QWidget):
         self.setLayout(self.rowHBox)
 
     def onUsageButtonPressed(self):
-        # moveLineCursor(self.SearchResItem.line_pos, self.SearchResItem.word_pos)
-
-        self.parent.parent.moveCursorMain()
+        self.parent.parent.moveCursorMain(self.SearchResItem.line_pos)
 
 
 

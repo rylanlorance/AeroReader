@@ -39,10 +39,10 @@ class Book:
 
 
     def setBook(self, file):
-        print("Path", file)
+        # print("Path", file)
 
         if self.file_type == ".txt":
-            print("We are working with a .txt file")
+            # print("We are working with a .txt file")
 
             self.file = file
 
@@ -53,7 +53,7 @@ class Book:
 
             self.index = self.create_index_txt()
 
-            print("index->", self.index)
+            # print("index->", self.index)
             # print("Contents->", self.contents)
 
         else:

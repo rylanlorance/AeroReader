@@ -44,7 +44,6 @@ class TextViewerMain(QWidget):
         font = QFont('Times', 24)
         self.text_box.setFont(font)
         self.text_box.clear()
-        print("")
 
         if self.localBook.contents is None:
             self.text_box.insertPlainText("No Book Uploaded yet")
@@ -52,8 +51,7 @@ class TextViewerMain(QWidget):
         else:
             self.text_box.insertPlainText(self.localBook.contents)
 
-    def moveLine(self):
-        self.lineCursor = QTextCursor(self.text_box.document().findBlockByLineNumber(250 - 1))
+    def moveLine(self, line_pos):
+        print("Moved cursor to", line_pos)
+        # self.text_box.moveCursor(self.lineCursor, self.text_box.document().findBlockByLineNumber(line_pos))
 
-# def moveLineCursor(line_pos, word_pos):
-#     linecursor = QTextCursor(self.text_box.document().findBlockByLineNumber(line_pos))

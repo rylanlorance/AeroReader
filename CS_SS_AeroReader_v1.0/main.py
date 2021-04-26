@@ -51,10 +51,10 @@ class MyWindow(QMainWindow):
         self.setCentralWidget(self.flow_stack)
 
         self.unsupervisedWindow = QMainWindow()
-        self.initSupervisedWindow()
+        # self.initSupervisedWindow()
 
         ## change later
-        self.showSupervisedWidget()
+        # self.showSupervisedWidget()
 
         self.createToolBar()
 
@@ -95,8 +95,6 @@ class MyWindow(QMainWindow):
 
     def initSupervisedWindow(self):
         self.unsupervisedWindow.setCentralWidget(self.supervisedWidget)
-
-    def showSupervisedWidget(self):
         self.unsupervisedWindow.show()
 
     def moveCursorMain(self, line_pos):

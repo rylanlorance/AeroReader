@@ -4,8 +4,6 @@ from PyQt5 import QtWidgets, QtCore, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QVBoxLayout, QFileDialog, QBoxLayout, \
     QHBoxLayout, QGroupBox, QFrame, QMessageBox
 
-from PyQt5.uic.properties import QtGui
-
 
 class FileSystemsDialogueWidget(QWidget):
     def __init__(self, parent):

@@ -19,7 +19,7 @@ class TextViewerMain(QWidget):
         self.mainVBox.addWidget(self.openUnsupervisedWidgetBtn)
 
         self.openSupervisedWidgetBtn = QPushButton("Open Supervised")
-        self.openSupervisedWidgetBtn.clicked.connect(parent.showSupervisedWidget)
+        self.openSupervisedWidgetBtn.clicked.connect(parent.initSupervisedWindow)
         self.mainVBox.addWidget(self.openSupervisedWidgetBtn)
 
         self.text_box = QPlainTextEdit()

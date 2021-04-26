@@ -8,6 +8,7 @@ import View.TabTableWidget as TabTableWidgetFile
 import View.SupervisedMainView as SupervisedViewFile
 import View.FileSystemsWidget as FileSystemsWidgetFile
 import View.TextViewerMain as TextViewerMainFile
+import View.SplashScreenWidget as SplashScreenWidgetFile
 
 from PyQt5.QtGui import QIcon
 import sys
@@ -30,7 +31,6 @@ class MyWindow(QMainWindow):
 
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following
         # lines.
-        self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
 
         # file systems page for users to upload files
         self.f_s = FileSystemsWidgetFile.FileSystemsDialogueWidget(self)
@@ -41,12 +41,11 @@ class MyWindow(QMainWindow):
         self.flow_stack = QStackedWidget()
         self.flow_stack.currentChanged.connect(self.onChanged)
 
+        self.splashScreen = SplashScreenWidgetFile.SplashScreenWidget(self)
+
+        self.flow_stack.addWidget(self.splashScreen)
         self.flow_stack.addWidget(self.f_s)
         self.flow_stack.addWidget(self.txt_view)
-        # self.flow_stack.addWidget(self.supervisedWidget)
-
-        # self.main_VBox = QVBoxLayout()
-        # self.main_VBox.addWidget(self.flow_stack)
 
         self.setCentralWidget(self.flow_stack)
 
@@ -94,8 +93,10 @@ class MyWindow(QMainWindow):
         self.flow_stack.setCurrentIndex(self.flow_stack.currentIndex() + 1)
 
     def initSupervisedWindow(self):
+        self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
         self.unsupervisedWindow.setCentralWidget(self.supervisedWidget)
         self.unsupervisedWindow.show()
+
 
     def moveCursorMain(self, line_pos):
         self.txt_view.moveLine(line_pos)

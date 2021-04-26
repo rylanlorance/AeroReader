@@ -23,7 +23,7 @@ class SupervisedMainView(QWidget):
 
         self.localBook = self.parent.getBook()
 
-        self.formBoxGroup = QGroupBox("Search Group")
+        self.formBoxGroup = QGroupBox("")
 
         self.__createSeachBox()
 

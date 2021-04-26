@@ -12,9 +12,6 @@ class TextViewerMain(QWidget):
         self.parent = parent
         self.localBook = self.parent.getBook()
 
-        self.l1 = QLabel("Hello Text Viewer")
-        self.mainVBox.addWidget(self.l1)
-
         self.openUnsupervisedWidgetBtn = QPushButton("Open Unsupervised")
         self.mainVBox.addWidget(self.openUnsupervisedWidgetBtn)
 

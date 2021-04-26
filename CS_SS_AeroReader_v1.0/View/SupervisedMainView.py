@@ -95,28 +95,24 @@ class SupervisedMainView(QWidget):
             self.scrollArea.setWidget(widget)
             scrollLayout = QVBoxLayout(widget)
 
-            row = SupervisedSearchItemRow(self)
-            scrollLayout.addWidget(row)
+            # lineContext = self.localBook.lines[self.queryResult.queryLocations[0].line_pos]
+            # word_pos = self.localBook.lines[self.queryResult.queryLocations[0].word_pos]
 
+            # self.row = SupervisedSearchItemRow(self, self.queryResult.query,
+            #                                    self.queryResult.queryLocations[0], lineContext)
+            # scrollLayout.addWidget(self.row)
+
+            # print("Search Result Item: ", searchResItem)
+            # print("Search Result Item.name ", searchResItem.word)
+            # print("Search Result Item.line_pos ", searchResItem.line_pos)
+            # print("Search Result Item.word_pos", searchResItem.word_pos)
 
             for searchResItem in self.queryResult.queryLocations:
-                print("Search Result Item: ", searchResItem)
-                print("Search Result Item.name ", searchResItem.word)
-                print("Search Result Item.line_pos ", searchResItem.line_pos)
-                print("Search Result Item.word_pos", searchResItem.word_pos)
-
-            # for i in range(5):
-                # newRow = SupervisedSearchItemRow(self)
-                # scrollLayout.addWidget(newRow)
-
-            scrollLayout.addStretch(1)
-
+                lineContext = self.localBook.lines[searchResItem.line_pos]
+                row = SupervisedSearchItemRow(self, searchResItem, lineContext)
+                scrollLayout.addWidget(row)
 
             self.queryFormBoxLayout.addWidget(self.scrollArea)
-
-
-
-
 
     def __createSeachBox(self):
         self.fboxLayout = QFormLayout()
@@ -136,8 +132,7 @@ class SupervisedMainView(QWidget):
 
         else:
             self.queryResult = self.localBook.searchForWords(searchString)
-
-
-
-
             self.init()
+
+
+

@@ -30,6 +30,8 @@ class TextViewerMain(QWidget):
 
         # important information
 
+        self.lineCursor = QTextCursor()
+
         # linecursor = QTextCursor(self.text_box.document().findBlockByLineNumber(250 - 1))
         # self.text_box.setTextCursor(linecursor)
 
@@ -49,3 +51,9 @@ class TextViewerMain(QWidget):
 
         else:
             self.text_box.insertPlainText(self.localBook.contents)
+
+    def moveLine(self):
+        self.lineCursor = QTextCursor(self.text_box.document().findBlockByLineNumber(250 - 1))
+
+# def moveLineCursor(line_pos, word_pos):
+#     linecursor = QTextCursor(self.text_box.document().findBlockByLineNumber(line_pos))

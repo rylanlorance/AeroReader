@@ -99,6 +99,9 @@ class MyWindow(QMainWindow):
     def showSupervisedWidget(self):
         self.unsupervisedWindow.show()
 
+    def moveCursorMain(self, line_pos):
+        self.txt_view.moveLine(line_pos)
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

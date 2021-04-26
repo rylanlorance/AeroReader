@@ -63,9 +63,12 @@ class Book:
         print("creating index")
 
         index = Index()
+        self.lines = list()
 
         with open(self.file.name) as file:
             for i, line in enumerate(file):
+                self.lines.append(line)
+
                 for j, word in enumerate(word_tokenize(line.lower())):
                     if not word.isalpha():
                         continue

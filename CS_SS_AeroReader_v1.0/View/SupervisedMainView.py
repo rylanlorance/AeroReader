@@ -116,12 +116,12 @@ class SupervisedMainView(QWidget):
 
     def __createSeachBox(self):
         self.fboxLayout = QFormLayout()
-        self.l1 = QLabel("Name")
         self.nm = QLineEdit()
-        self.fboxLayout.addRow(self.l1, self.nm)
         btn = QPushButton("Search")
+        self.fboxLayout.addRow(self.nm, btn)
+
         btn.clicked.connect(self.__searchButtonClicked)
-        self.fboxLayout.addRow(btn)
+
         self.formBoxGroup.setLayout(self.fboxLayout)
 
     def __searchButtonClicked(self):

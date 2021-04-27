@@ -11,14 +11,11 @@ class MyTableWidget(QWidget):
         self.layout = QVBoxLayout(self)
         self.parent = parent
 
-
-
         # Init tabs
         self.tabs = QTabWidget()
         self.unsupervisedTab = QWidget()
         self.supervisedTab = SupervisedMainViewFile.SupervisedMainView(self)
         self.tabs.resize(300,200)
-
 
         # Add Tabs
         self.tabs.addTab(self.unsupervisedTab, "Unsupervised")

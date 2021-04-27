@@ -15,10 +15,12 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
 PATH = os.path.abspath(__file__)
+path1 = PATH.split("\\")[:-1]
+path1 = "/".join(path1)
 
-CONFIG = "./bert_config/multi_cased_L-12_H-768_A-12/bert_config.json"
-CHECKPOINT = "./bert_config/multi_cased_L-12_H-768_A-12/bert_model.ckpt"
-VOCAB = "./bert_config/multi_cased_L-12_H-768_A-12/vocab.txt"
+CONFIG = f"{path1}/bert_config/multi_cased_L-12_H-768_A-12/bert_config.json"
+CHECKPOINT = f"{path1}/bert_config/multi_cased_L-12_H-768_A-12/bert_model.ckpt"
+VOCAB = f"{path1}/bert_config/multi_cased_L-12_H-768_A-12/vocab.txt"
 
 
 class BertSearch:

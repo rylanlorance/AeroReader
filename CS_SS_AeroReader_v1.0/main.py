@@ -96,6 +96,16 @@ class MyWindow(QMainWindow):
         self.supervisedWidget = SupervisedViewFile.SupervisedMainView(self)
         self.unsupervisedWindow.setCentralWidget(self.supervisedWidget)
         self.unsupervisedWindow.show()
+        
+    def initUnsupervisedWindow(self):
+        self.unsupervisedWidget = Tree(
+            self.myBook.file.name, 3, 800, 800
+        )
+
+        self.clusters = self.unsupervisedWidget.clusters
+
+        self.unsupervisedWindow.setCentralWidget(self.unsupervisedWidget)
+        self.unsupervisedWindow.show()
 
 
     def moveCursorMain(self, line_pos):

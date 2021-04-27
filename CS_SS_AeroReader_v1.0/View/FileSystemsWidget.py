@@ -35,12 +35,11 @@ class FileSystemsDialogueWidget(QWidget):
         container.setFixedSize(200, 200)
         container.setStyleSheet("background-color: grey")
 
-        l1 = Qt.QLabel("Drag and Drop (Under Construction)")
+        # l1 = Qt.QLabel("Drag and Drop (Under Construction)")
 
         btn = Qt.QPushButton("Click to browse files")
         btn.clicked.connect(self.__getFiles)
 
-        docs_box.addWidget(l1)
         docs_box.addWidget(btn)
         self.addDocumentsBoxLayout.addWidget(container, alignment=QtCore.Qt.AlignHCenter)
 

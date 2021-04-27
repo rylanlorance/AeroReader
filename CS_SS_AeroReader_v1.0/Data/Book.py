@@ -53,9 +53,6 @@ class Book:
 
             self.index = self.create_index_txt()
 
-            # print("index->", self.index)
-            # print("Contents->", self.contents)
-
         else:
             print("Filetype Error")
 

@@ -9,7 +9,10 @@ conda create --name AeroReader python=3.8
 source activate AeroReader
 
 pip install nltk, scipy, PyMuPDF, sklearn, PyQt5
-```
+```  
+Setting up the BERT Neural Network for supervised searching.  
+Download the BERT config folder from: https://drive.google.com/drive/folders/1m6zB_0eNYH0F_br6pj3OGIPDk4wpgaop?usp=sharing  
+Place the folder within the `/CS_SS_AeroReader_v1.0/bert/` directory  
 
 ### Run AeroReader
 Running AeroReader is very simple!

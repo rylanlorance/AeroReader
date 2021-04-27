@@ -14,6 +14,7 @@ class TextViewerMain(QWidget):
 
         self.openUnsupervisedWidgetBtn = QPushButton("Open Unsupervised")
         self.openUnsupervisedWidgetBtn.setStyleSheet("background-color: rgb(69, 123, 157)")
+        self.openUnsupervisedWidgetBtn.clicked.connect(parent.initUnsupervisedWindow)
         self.mainVBox.addWidget(self.openUnsupervisedWidgetBtn)
 
         self.openSupervisedWidgetBtn = QPushButton("Open Supervised")

@@ -6,7 +6,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from PyQt5.QtWidgets import *
 
-from Clustering import TextCluster
+from Unsupervised.Clustering import TextCluster
 
 # class for scrollable label
 class ScrollLabel(QScrollArea):

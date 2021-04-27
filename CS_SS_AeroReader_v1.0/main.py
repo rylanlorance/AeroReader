@@ -14,8 +14,8 @@ from PyQt5.QtGui import QIcon
 import sys
 
 from Data.Book import Book
-from Unsupervised.Tree import Tree
 from bert.bert_search import BertSearch
+from Unsupervised.Tree import Tree
 
 
 class MyWindow(QMainWindow):

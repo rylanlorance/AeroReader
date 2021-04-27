@@ -13,7 +13,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 from sklearn.cluster import AgglomerativeClustering
 
-import GetText
+import Unsupervised.GetText as GetText
 
 class BaseInterface(ABC):
     def __repr__(self):

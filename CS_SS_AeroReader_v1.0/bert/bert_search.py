@@ -14,9 +14,11 @@ from nltk.corpus import wordnet
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 tf.compat.v1.logging.set_verbosity(tf.compat.v1.logging.ERROR)
 
-CONFIG = "bert/bert_config/multi_cased_L-12_H-768_A-12/bert_config.json"
-CHECKPOINT = "bert/bert_config/multi_cased_L-12_H-768_A-12/bert_model.ckpt"
-VOCAB = "bert/bert_config/multi_cased_L-12_H-768_A-12/vocab.txt"
+PATH = os.path.abspath(__file__)
+
+CONFIG = "./bert_config/multi_cased_L-12_H-768_A-12/bert_config.json"
+CHECKPOINT = "./bert_config/multi_cased_L-12_H-768_A-12/bert_model.ckpt"
+VOCAB = "./bert_config/multi_cased_L-12_H-768_A-12/vocab.txt"
 
 
 class BertSearch:
@@ -25,11 +27,16 @@ class BertSearch:
         self.model = load_trained_model_from_checkpoint(CONFIG, CHECKPOINT, seq_len=self.max_seq)
         self.tokenizer = Tokenizer(load_vocabulary(VOCAB))
 
-    def search(self, search_term: str) -> list or None:
+    def search(self, search_term: str, clusters=None) -> list or None:
         try:
             syn_check, syn_list = self.get_syn_list(search_term)
             if not syn_check:
                 return syn_list
+
+            cluster_words = []
+            if clusters is not None:
+                cluster_words = self.find_cluster_overlap(search_term, syn_list, clusters)
+            syn_list.extend(cluster_words)
 
             indices, segments, tokens = self.get_tokens(search_term, syn_list)
             if indices is None or segments is None or tokens is None:
@@ -42,6 +49,21 @@ class BertSearch:
         except Exception as e:
             print(f"error searching for term {search_term}: {e}")
             return None
+
+    def find_cluster_overlap(self, term, syn_list, clusters):
+        for cluster in clusters:
+            if term in cluster:
+                return cluster
+            if self.common_member(syn_list, cluster):
+                return cluster
+
+    @staticmethod
+    def common_member(a, b):
+        a_set = set(a)
+        b_set = set(b)
+        if len(a_set.intersection(b_set)) > 0:
+            return True
+        return False
 
     def get_syn_list(self, term) -> (bool, list):
         try:

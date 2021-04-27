@@ -20,7 +20,6 @@ class SupervisedSearchItemRow(QWidget):
         self.label = QLabel(SearchResItem.word)
         self.label.setFont(QFont('Arial', 15))
         self.rowVBox.addWidget(self.label)
-        print("_______ found on line ", SearchResItem.line_pos)
 
         self.line = QLabel(lineContext)
         self.rowVBox.addWidget(self.line)

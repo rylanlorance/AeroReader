@@ -85,7 +85,6 @@ class MyWindow(QMainWindow):
         # self.main_VBox.addWidget(self.tb)
 
     def goToPreviousScreen(self):
-        print("Let's go to the previous screen global")
         self.flow_stack.setCurrentIndex(self.flow_stack.currentIndex() - 1)
 
     def goToNextScreen(self):

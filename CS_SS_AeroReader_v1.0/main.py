@@ -14,6 +14,8 @@ from PyQt5.QtGui import QIcon
 import sys
 
 from Data.Book import Book
+from Unsupervised.Tree import Tree
+from bert.bert_search import BertSearch
 
 
 class MyWindow(QMainWindow):
@@ -26,9 +28,12 @@ class MyWindow(QMainWindow):
 
         self.setStyleSheet("background-color: rgb(254, 250, 224)")
 
+        neuralNet = BertSearch(200)
 
         ## Book
         self.myBook = Book()
+        self.myBook.neuralNet = neuralNet
+
 
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following
         # lines.

@@ -8,6 +8,7 @@ import Data.SearchResultItem as SearchResultFile
 from nltk.tokenize import word_tokenize
 
 
+
 class Index(dict):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -27,6 +28,8 @@ class Book:
     def searchForWords(self, searchQuery):
         print("Searching for...", searchQuery)
         searchQueryFormatted = searchQuery.lower()
+
+        # syn result = self.neuralNetwork.search("Searchter")
 
         res = QueryResultFile.QueryResult()
         res.query = searchQueryFormatted

@@ -19,6 +19,7 @@ path1 = PATH.split("\\")[:-1]
 path1 = "/".join(path1)
 
 CONFIG = f"{path1}/bert_config/multi_cased_L-12_H-768_A-12/bert_config.json"
+print(CONFIG)
 CHECKPOINT = f"{path1}/bert_config/multi_cased_L-12_H-768_A-12/bert_model.ckpt"
 VOCAB = f"{path1}/bert_config/multi_cased_L-12_H-768_A-12/vocab.txt"
 
@@ -38,7 +39,12 @@ class BertSearch:
             cluster_words = []
             if clusters is not None:
                 cluster_words = self.find_cluster_overlap(search_term, syn_list, clusters)
-            syn_list.extend(cluster_words)
+
+            for word in cluster_words:
+                if word not in syn_list:
+                    syn_list.append(word)
+
+            print(syn_list)
 
             indices, segments, tokens = self.get_tokens(search_term, syn_list)
             if indices is None or segments is None or tokens is None:
@@ -54,10 +60,12 @@ class BertSearch:
 
     def find_cluster_overlap(self, term, syn_list, clusters):
         for cluster in clusters:
-            if term in cluster:
-                return cluster
-            if self.common_member(syn_list, cluster):
-                return cluster
+            if term in cluster.frequent_words:
+                print("term")
+                return cluster.frequent_words
+            if self.common_member(syn_list, cluster.frequent_words):
+                print("synonym")
+                return cluster.frequent_words
 
     @staticmethod
     def common_member(a, b):

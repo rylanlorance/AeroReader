@@ -36,15 +36,21 @@ class TextViewerMain(QWidget):
         self.parent = parent
         self.localBook = self.parent.getBook()
 
+        self.buttonHBox = QHBoxLayout()
+        self.buttonWidget = QWidget()
+        self.buttonWidget.setLayout(self.buttonHBox)
+
         self.openUnsupervisedWidgetBtn = QPushButton("Open Unsupervised")
         self.openUnsupervisedWidgetBtn.setStyleSheet("background-color: rgb(69, 123, 157)")
         self.openUnsupervisedWidgetBtn.clicked.connect(parent.initUnsupervisedWindow)
-        self.mainVBox.addWidget(self.openUnsupervisedWidgetBtn)
+        self.buttonHBox.addWidget(self.openUnsupervisedWidgetBtn)
 
         self.openSupervisedWidgetBtn = QPushButton("Open Supervised")
         self.openSupervisedWidgetBtn.setStyleSheet("background-color: rgb(168, 218, 220)")
         self.openSupervisedWidgetBtn.clicked.connect(parent.initSupervisedWindow)
-        self.mainVBox.addWidget(self.openSupervisedWidgetBtn)
+        self.buttonHBox.addWidget(self.openSupervisedWidgetBtn)
+
+        self.mainVBox.addWidget(self.buttonWidget)
 
         self.text_box = QPlainTextEdit()
         self.text_box.setWordWrapMode(QTextOption.NoWrap)

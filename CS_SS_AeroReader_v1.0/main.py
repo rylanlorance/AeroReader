@@ -26,7 +26,7 @@ class MyWindow(QMainWindow):
         self.height = 700
         self.setGeometry(QtCore.QRect(0, 0, self.height, self.width))
 
-        self.setStyleSheet("background-color: rgb(254, 250, 224)")
+        self.setStyleSheet("background-color: rgb(218, 218, 217)")
 
         # neuralNet = BertSearch(200)
 

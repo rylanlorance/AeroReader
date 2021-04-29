@@ -14,7 +14,7 @@ class FileSystemsDialogueWidget(QWidget):
         self.localBook = self.parent.myBook
 
         self.addDocumentsBox = QGroupBox("Add Documents")
-        self.addDocumentsBox.setStyleSheet("background-color: rgb(233, 237, 201)")
+        self.addDocumentsBox.setStyleSheet("background-color: rgb(91, 195, 235)")
         self.addDocumentsBox.setFixedSize(400, 500)
         self.addDocumentsBoxLayout = QVBoxLayout()
 
@@ -34,7 +34,7 @@ class FileSystemsDialogueWidget(QWidget):
         container = QWidget()
         container.setLayout(docs_box)
         container.setFixedSize(200, 200)
-        container.setStyleSheet("background-color: rgb(204, 213, 174)")
+        container.setStyleSheet("background-color: rgb(182, 228, 246)")
 
         # l1 = Qt.QLabel("Drag and Drop (Under Construction)")
 

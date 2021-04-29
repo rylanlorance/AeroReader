@@ -14,7 +14,7 @@ from PyQt5.QtGui import QIcon
 import sys
 
 from Data.Book import Book
-from bert.bert_search import BertSearch
+# from bert.bert_search import BertSearch
 from Unsupervised.Tree import Tree
 
 
@@ -28,11 +28,11 @@ class MyWindow(QMainWindow):
 
         self.setStyleSheet("background-color: rgb(254, 250, 224)")
 
-        neuralNet = BertSearch(200)
+        # neuralNet = BertSearch(200)
 
         ## Book
         self.myBook = Book()
-        self.myBook.neuralNet = neuralNet
+        # self.myBook.neuralNet = neuralNet
 
 
         # set up Supervised View- @Darby if you want to show your view instead, just comment out the two following
@@ -116,10 +116,13 @@ class MyWindow(QMainWindow):
     def moveCursorMain(self, line_pos):
         self.txt_view.moveLine(line_pos)
 
-
 if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    win = MyWindow()
+    try:
+        app = QApplication(sys.argv)
+        win = MyWindow()
 
-    win.show()
-    sys.exit(app.exec())
+        win.show()
+        sys.exit(app.exec())
+    except:
+        import traceback
+        print("traceback->", traceback.format_exc())

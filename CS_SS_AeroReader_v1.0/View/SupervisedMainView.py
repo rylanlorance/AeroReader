@@ -60,7 +60,7 @@ class SupervisedMainView(QWidget):
             self.queryFormBox.setTitle("Results for {}".format(self.queryResult.query))
             self.createQueryResultBox()
 
-            self.querySynFormBox.setTitle("Results for Synonyms of {}".format(self.queryResult.query))
+            self.querySynFormBox.setTitle("Results for Words Similar to {}".format(self.queryResult.query))
             self.createSynResultBox()
 
             self.queryLayout.addWidget(self.queryFormBox)
@@ -73,6 +73,34 @@ class SupervisedMainView(QWidget):
 
     def createSynResultBox(self):
         self.synFormBoxLayout = QVBoxLayout()
+        self.querySynFormBox.setLayout(self.synFormBoxLayout)
+
+        # clear the layout
+        for i in reversed(range(self.synFormBoxLayout.count())):
+            self.synFormBoxLayout.itemAt(i).widget().setParent(None)
+
+        if self.queryResult.synonymLocations is None or len(self.queryResult.synonymLocations) == 0:
+            print("We could not find any words similar to ", self.queryResult.query)
+            errorText = "No words found similar to {0}".format(self.queryResult.query)
+            errorLabel = QLabel(errorText)
+            self.synFormBoxLayout.addWidget(errorLabel)
+
+        else:
+            self.synScrollArea = QScrollArea()
+            self.synScrollArea.setWidgetResizable(True)
+
+            widget = QWidget()
+            self.synScrollArea.setWidget(widget)
+            synScrollLayout = QVBoxLayout(widget)
+
+            for similarWord in self.queryResult.synonymLocations:
+                print("similar word->", similarWord)
+                for similarWordLocation in similarWord:
+                    lineContext = self.localBook.lines[similarWordLocation.line_pos]
+                    row = SupervisedSearchItemRow(self, similarWordLocation, lineContext)
+                    synScrollLayout.addWidget(row)
+
+            self.synFormBoxLayout.addWidget(self.synScrollArea)
 
     def createQueryResultBox(self):
 
@@ -88,31 +116,19 @@ class SupervisedMainView(QWidget):
             self.queryFormBoxLayout.addWidget(errorLabel)
 
         else:
-            self.scrollArea = QScrollArea()
-            self.scrollArea.setWidgetResizable(True)
+            self.queryScrollArea = QScrollArea()
+            self.queryScrollArea.setWidgetResizable(True)
 
             widget = QWidget()
-            self.scrollArea.setWidget(widget)
+            self.queryScrollArea.setWidget(widget)
             scrollLayout = QVBoxLayout(widget)
-
-            # lineContext = self.localBook.lines[self.queryResult.queryLocations[0].line_pos]
-            # word_pos = self.localBook.lines[self.queryResult.queryLocations[0].word_pos]
-
-            # self.row = SupervisedSearchItemRow(self, self.queryResult.query,
-            #                                    self.queryResult.queryLocations[0], lineContext)
-            # scrollLayout.addWidget(self.row)
-
-            # print("Search Result Item: ", searchResItem)
-            # print("Search Result Item.name ", searchResItem.word)
-            # print("Search Result Item.line_pos ", searchResItem.line_pos)
-            # print("Search Result Item.word_pos", searchResItem.word_pos)
 
             for searchResItem in self.queryResult.queryLocations:
                 lineContext = self.localBook.lines[searchResItem.line_pos]
                 row = SupervisedSearchItemRow(self, searchResItem, lineContext)
                 scrollLayout.addWidget(row)
 
-            self.queryFormBoxLayout.addWidget(self.scrollArea)
+            self.queryFormBoxLayout.addWidget(self.queryScrollArea)
 
     def __createSeachBox(self):
         self.fboxLayout = QFormLayout()

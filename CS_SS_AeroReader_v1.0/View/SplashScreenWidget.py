@@ -14,11 +14,12 @@ class SplashScreenWidget(QWidget):
         self.rowVBox = QHBoxLayout()
         self.setLayout(self.rowVBox)
 
-        self.im = QPixmap("Resources/AeroReader_Logo.png")
+        self.im = QPixmap("Resources/AeroReaderLogoV2.png")
+        self.im2 = self.im.scaled(300, 300, Qt.KeepAspectRatio)
 
         self.label = QLabel()
 
-        self.label.setPixmap(self.im)
+        self.label.setPixmap(self.im2)
 
-        self.rowVBox.addWidget(self.label, Qt.AlignCenter)
+        self.rowVBox.addWidget(self.label, QtCore.Qt.AlignHCenter)
 

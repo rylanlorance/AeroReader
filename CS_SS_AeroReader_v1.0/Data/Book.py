@@ -29,13 +29,27 @@ class Book:
         print("Searching for...", searchQuery)
         searchQueryFormatted = searchQuery.lower()
 
-        # syn result = self.neuralNetwork.search("Searchter")
-
         res = QueryResultFile.QueryResult()
         res.query = searchQueryFormatted
 
         if searchQuery in self.index:
             res.queryLocations = self.index[searchQueryFormatted]
+        print("Res.queryLocations", res.queryLocations)
+
+
+        # syn result = self.neuralNetwork.search("Searchter")
+        #Tim if you can fix this it should work
+
+        # hardcoded result
+        synResult =  [('life', 0.0), ('spirit', 4.804936366744894), ('lifetime', 4.930931858060204), ('living', 5.002020467352751), ('animation', 7.294453146853451), ('biography', 8.071663752581724), ('aliveness', 13.186728476984017), ('liveliness', 37.002049064741044), ('lifespan', 38.19857614837124), ('sprightliness', 45.93345967466729)]
+
+        for result in synResult:
+            print("Result", result)
+            print("Result[0]", result[0])
+            print("Result[1]", result[1])
+
+            if result[0] in self.index:
+                res.synonymLocations.append(self.index[result[0]])
 
         return res
 

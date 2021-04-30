@@ -1,7 +1,7 @@
 import string
 import os
 
-# import tensorflow as tf
+import tensorflow as tf
 import numpy as np
 
 from typing import Any
@@ -43,8 +43,6 @@ class BertSearch:
             for word in cluster_words:
                 if word not in syn_list:
                     syn_list.append(word)
-
-            print(syn_list)
 
             indices, segments, tokens = self.get_tokens(search_term, syn_list)
             if indices is None or segments is None or tokens is None:

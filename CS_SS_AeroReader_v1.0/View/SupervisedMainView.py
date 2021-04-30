@@ -96,9 +96,10 @@ class SupervisedMainView(QWidget):
             for similarWord in self.queryResult.synonymLocations:
                 print("similar word->", similarWord)
                 for similarWordLocation in similarWord:
-                    lineContext = self.localBook.lines[similarWordLocation.line_pos]
-                    row = SupervisedSearchItemRow(self, similarWordLocation, lineContext)
-                    synScrollLayout.addWidget(row)
+                    if similarWordLocation.word != self.queryResult.query:
+                        lineContext = self.localBook.lines[similarWordLocation.line_pos]
+                        row = SupervisedSearchItemRow(self, similarWordLocation, lineContext)
+                        synScrollLayout.addWidget(row)
 
             self.synFormBoxLayout.addWidget(self.synScrollArea)
 

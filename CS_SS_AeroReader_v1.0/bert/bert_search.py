@@ -1,5 +1,6 @@
 import string
 import os
+import traceback
 
 import tensorflow as tf
 import numpy as np
@@ -30,7 +31,7 @@ class BertSearch:
         self.model = load_trained_model_from_checkpoint(CONFIG, CHECKPOINT, seq_len=self.max_seq)
         self.tokenizer = Tokenizer(load_vocabulary(VOCAB))
 
-    def search(self, search_term: str, clusters=None) -> list or None:
+    def search(self, search_term: str, clusters=None) -> list:
         try:
             syn_check, syn_list = self.get_syn_list(search_term)
             if not syn_check:
@@ -54,16 +55,22 @@ class BertSearch:
             return result
         except Exception as e:
             print(f"error searching for term {search_term}: {e}")
-            return None
+            print(traceback.format_exc())
+            return []
 
     def find_cluster_overlap(self, term, syn_list, clusters):
-        for cluster in clusters:
-            if term in cluster.frequent_words:
-                print("term")
-                return cluster.frequent_words
-            if self.common_member(syn_list, cluster.frequent_words):
-                print("synonym")
-                return cluster.frequent_words
+        try:
+            for cluster in clusters:
+                if term in cluster.frequent_words:
+                    print("term")
+                    return cluster.frequent_words
+                if self.common_member(syn_list, cluster.frequent_words):
+                    print("synonym")
+                    return cluster.frequent_words
+            return []
+        except Exception as e:
+            print(f"error finding cluster overlap: {e}")
+            return []
 
     @staticmethod
     def common_member(a, b):
@@ -163,7 +170,7 @@ class BertSearch:
 
         except Exception as e:
             print(f"error parsing results for {term}: {e}")
-            return None
+            return []
 
     @staticmethod
     def create_synset(term) -> list or None:
